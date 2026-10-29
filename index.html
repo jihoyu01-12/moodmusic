@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MOOD MUSIC | Find Your Mood</title>
+    <link rel="shortcut icon" href="images/이모티콘.png" type="image/x-icon" />
+    <meta
+      name="description"
+      content="오늘의 기분과 상황에 어울리는 음악을 발견해 보세요."
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+  </head>
+
+  <body>
+    <!-- 1. 상단 메뉴 -->
+    <header class="header">
+      <nav class="navbar container">
+        <a href="#home" class="logo">
+          <span class="logo-icon">♫</span>
+          MOOD<span class="logo-highlight">MUSIC</span>
+        </a>
+
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          aria-label="메뉴 열기"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+
+        <div class="nav-links" id="navLinks">
+          <a href="#home" class="nav-link active">Home</a>
+          <a href="#moods" class="nav-link">Moods</a>
+          <a href="#discover" class="nav-link">Discover</a>
+          <a href="#playlists" class="nav-link">Playlists</a>
+          <a href="#about" class="nav-link">About</a>
+        </div>
+
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          aria-label="테마 변경"
+          title="테마 변경"
+        >
+          ☀️
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- 2. 메인 소개 -->
+      <section class="hero section" id="home">
+        <div class="hero-content container">
+          <div class="hero-text">
+            <p class="eyebrow">YOUR DAY, YOUR SOUND</p>
+
+            <h1>
+              오늘의 기분을<br />
+              <span class="gradient-text">음악으로 채우다.</span>
+            </h1>
+
+            <p class="hero-description">
+              기분이 좋은 날에도, 지친 날에도.<br />
+              지금 당신에게 어울리는 음악을 찾아보세요.
+            </p>
+
+            <div class="hero-buttons">
+              <a href="#moods" class="btn btn-primary">
+                음악 추천받기 <span>→</span>
+              </a>
+
+              <a href="#discover" class="btn btn-secondary"> 음악 둘러보기 </a>
+            </div>
+
+            <div class="hero-note">
+              <span class="note-icon">♫</span>
+              <span>Every mood has its own melody.</span>
+            </div>
+          </div>
+
+          <div class="hero-art">
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+
+            <div class="hero-disc">
+              <div class="disc-center">♫</div>
+            </div>
+
+            <div class="floating-card floating-card-top">
+              <span>🎧</span>
+              <div>
+                <strong>Your mood</strong>
+                <small>Your music</small>
+              </div>
+            </div>
+
+            <div class="floating-card floating-card-bottom">
+              <span class="sound-wave">▂ ▄ ▆ ▄ ▂</span>
+              <small>Feel the music</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. 기분별 음악 선택 -->
+      <section class="section mood-section" id="moods">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">CHOOSE YOUR MOOD</p>
+            <h2>지금 어떤 기분인가요?</h2>
+            <p>기분을 선택하면 어울리는 음악을 추천해 드릴게요.</p>
+          </div>
+
+          <div class="mood-grid">
+            <button class="mood-card active" data-mood="all">
+              <span class="mood-emoji">🎧</span>
+              <strong>전체</strong>
+              <small>All Music</small>
+            </button>
+
+            <button class="mood-card" data-mood="study">
+              <span class="mood-emoji">📚</span>
+              <strong>공부</strong>
+              <small>Focus Time</small>
+            </button>
+
+            <button class="mood-card" data-mood="relax">
+              <span class="mood-emoji">🌙</span>
+              <strong>휴식</strong>
+              <small>Slow Down</small>
+            </button>
+
+            <button class="mood-card" data-mood="workout">
+              <span class="mood-emoji">🔥</span>
+              <strong>운동</strong>
+              <small>Energy Up</small>
+            </button>
+
+            <button class="mood-card" data-mood="happy">
+              <span class="mood-emoji">☀️</span>
+              <strong>기분 전환</strong>
+              <small>Feel Good</small>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. 음악 탐색 -->
+      <section class="section discover-section" id="discover">
+        <div class="container">
+          <div class="section-heading heading-row">
+            <div>
+              <p class="eyebrow">DISCOVER YOUR SOUND</p>
+              <h2>오늘의 추천 음악</h2>
+              <p>마음에 드는 음악을 발견해 보세요.</p>
+            </div>
+
+            <div class="music-count"><span id="musicCount">8</span> TRACKS</div>
+          </div>
+
+          <!-- 검색창 -->
+          <div class="search-box">
+            <span class="search-icon">⌕</span>
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="노래 제목이나 가수를 검색하세요."
+              aria-label="노래 제목이나 가수 검색"
+            />
+            <button
+              id="clearSearch"
+              class="clear-search"
+              aria-label="검색어 지우기"
+            >
+              ×
+            </button>
+          </div>
+
+          <!-- 장르 필터 -->
+          <div class="genre-filters">
+            <button class="genre-btn active" data-genre="all">전체</button>
+            <button class="genre-btn" data-genre="pop">POP</button>
+            <button class="genre-btn" data-genre="indie">INDIE</button>
+            <button class="genre-btn" data-genre="lofi">LO-FI</button>
+            <button class="genre-btn" data-genre="rnb">R&B</button>
+          </div>
+
+          <!-- JavaScript가 음악 카드를 생성하는 영역 -->
+          <div class="music-grid" id="musicGrid"></div>
+
+          <p class="empty-message" id="emptyMessage" hidden>
+            검색 결과가 없어요. 다른 단어로 검색해 보세요.
+          </p>
+        </div>
+      </section>
+
+      <!-- 5. 플레이리스트 -->
+      <section class="section playlist-section" id="playlists">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">MADE FOR YOUR MOMENT</p>
+            <h2>상황별 플레이리스트</h2>
+            <p>지금 하고 있는 일에 어울리는 음악을 골라 보세요.</p>
+          </div>
+
+          <div class="playlist-grid">
+            <button class="playlist-card playlist-study" data-playlist="study">
+              <span class="playlist-icon">📖</span>
+              <span class="playlist-label">FOR YOUR FOCUS</span>
+              <strong>Focus Time</strong>
+              <span class="playlist-description"> 집중이 필요한 순간 </span>
+              <span class="playlist-arrow">↗</span>
+            </button>
+
+            <button class="playlist-card playlist-night" data-playlist="relax">
+              <span class="playlist-icon">🌌</span>
+              <span class="playlist-label">FOR YOUR NIGHT</span>
+              <strong>Night & Chill</strong>
+              <span class="playlist-description"> 하루를 마무리하는 시간 </span>
+              <span class="playlist-arrow">↗</span>
+            </button>
+
+            <button
+              class="playlist-card playlist-energy"
+              data-playlist="workout"
+            >
+              <span class="playlist-icon">⚡</span>
+              <span class="playlist-label">FOR YOUR ENERGY</span>
+              <strong>Power Up</strong>
+              <span class="playlist-description"> 에너지가 필요한 순간 </span>
+              <span class="playlist-arrow">↗</span>
+            </button>
+          </div>
+
+          <div class="playlist-detail" id="playlistDetail" hidden>
+            <div class="playlist-detail-heading">
+              <div>
+                <p class="eyebrow">YOUR PLAYLIST</p>
+                <h3 id="playlistTitle">Focus Time</h3>
+                <p id="playlistDescription"></p>
+              </div>
+
+              <button
+                class="close-playlist"
+                id="closePlaylist"
+                aria-label="플레이리스트 닫기"
+              >
+                ×
+              </button>
+            </div>
+
+            <div class="playlist-tracks" id="playlistTracks"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. 좋아요 목록 -->
+      <section class="section favorites-section" id="favorites">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">YOUR FAVORITES</p>
+            <h2>마음에 드는 음악 ❤️</h2>
+            <p>좋아요를 누른 음악을 여기에서 확인할 수 있어요.</p>
+          </div>
+
+          <div class="favorites-list" id="favoritesList">
+            <p class="favorites-empty">
+              아직 좋아요를 누른 음악이 없어요.<br />
+              마음에 드는 노래의 하트를 눌러 보세요.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. 사이트 소개 -->
+      <section class="section about-section" id="about">
+        <div class="container about-content">
+          <div class="about-symbol">♫</div>
+
+          <div>
+            <p class="eyebrow">ABOUT MOOD MUSIC</p>
+            <h2>음악으로 연결되는<br />우리의 하루.</h2>
+
+            <p>
+              MOOD MUSIC은 기분과 상황에 맞는 음악을 쉽게 발견할 수 있도록 만든
+              음악 추천 웹사이트입니다. 공부할 때, 휴식할 때, 에너지가 필요할 때
+              당신만의 사운드를 찾아보세요.
+            </p>
+
+            <a href="#moods" class="text-link"> 나에게 맞는 음악 찾기 → </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 8. 하단 정보 -->
+    <footer class="footer">
+      <div class="container footer-content">
+        <a href="#home" class="logo">
+          <span class="logo-icon">♫</span>
+          MOOD<span class="logo-highlight">MUSIC</span>
+        </a>
+
+        <p>Find your mood, find your music.</p>
+
+        <a href="#home" class="back-to-top">맨 위로 ↑</a>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>© 2026 MOOD MUSIC. Personal learning project.</p>
+        <p>Made with HTML, CSS & JavaScript.</p>
+      </div>
+    </footer>
+
+    <!-- 화면 알림 -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
